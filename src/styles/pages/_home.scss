@@ -1,11 +1,16 @@
-/* HOME BASE */
+/* =========================
+   HOME BASE
+========================= */
 .home {
   width: 100%;
   min-height: 100vh;
   background: #fff;
+  overflow-x: hidden;
 }
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 .hero {
   background: #fff;
 }
@@ -13,37 +18,42 @@
 .hero__wrap {
   width: 100%;
   max-width: 1920px;
-  min-height: 1080px;
   margin: 0 auto;
+
   position: relative;
   display: flex;
   align-items: center;
-  padding: 0 157px;
+
+  min-height: clamp(680px, 70vh, 1080px);
+  padding-inline: clamp(16px, 6vw, 157px);
+  gap: clamp(24px, 4vw, 60px);
 }
 
 .hero__left {
-  width: 520px;
+  width: 100%;
+  max-width: 520px;
 }
 
 .hero__mask {
   font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial;
-  font-size: 18px;
+  font-size: clamp(16px, 1.35vw, 18px);
   font-weight: 400;
   color: #000;
-  margin-bottom: 150px;
+  margin-bottom: clamp(32px, 10vw, 150px);
 }
 
 .hero__title {
   font-family: "Michroma", system-ui, -apple-system, Segoe UI, Roboto, Arial;
-  font-size: 40px;
+  font-size: clamp(28px, 3vw, 40px);
   font-weight: 400;
   color: #000;
-  margin: 0 0 60px;
+  margin: 0 0 clamp(18px, 4vw, 60px);
+  line-height: 1.15;
 }
 
 .hero__line {
   font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial;
-  font-size: 18px;
+  font-size: clamp(16px, 1.35vw, 18px);
   font-weight: 400;
   color: #000;
   margin: 0 0 18px;
@@ -55,15 +65,16 @@
 }
 
 .hero__cta {
-  margin-top: 250px;
+  margin-top: clamp(28px, 6vw, 250px);
   border: 0;
   cursor: pointer;
   color: #fff;
+
   font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial;
-  font-size: 20px;
+  font-size: clamp(16px, 1.6vw, 20px);
   font-weight: 700;
 
-  padding: 25px 185px;
+  padding: clamp(14px, 2.2vw, 25px) clamp(28px, 10vw, 185px);
   border-radius: 50px;
   background: linear-gradient(90deg, #c8c8c8 0%, #000 100%);
   -webkit-tap-highlight-color: transparent;
@@ -80,31 +91,40 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  min-width: 0;
 }
 
+/* Bota */
 .hero__product {
-  width: 641px;
-  height: 641px;
+  width: clamp(260px, 42vw, 641px);
+  height: clamp(260px, 42vw, 641px);
+  max-width: 100%;
   object-fit: contain;
   user-select: none;
+
+  display: block;
+  margin-inline: auto;
 }
 
-/* ICON BAR (right side) */
+/* =========================
+   ICON BAR
+========================= */
 .iconbar {
   position: absolute;
-  top: 48px;
-  right: 61px;
+  top: clamp(12px, 3vw, 48px);
+  right: clamp(12px, 3.5vw, 61px);
+
   display: flex;
   flex-direction: column;
-  gap: 65px;
+  gap: clamp(14px, 3.8vw, 65px);
   align-items: center;
   justify-content: center;
 }
 
-/* Unificado: antes estaba duplicado */
 .iconbar__btn {
-  width: 39px;
-  height: 39px;
+  width: clamp(28px, 2.8vw, 39px);
+  height: clamp(28px, 2.8vw, 39px);
+
   background: transparent;
   border: 0;
   padding: 0;
@@ -122,17 +142,9 @@
     height: 100%;
     display: block;
   }
-
-  &:hover {
-    transform: translateY(-1px);
-  }
-
-  &:active {
-    transform: translateY(0px);
-  }
 }
 
-/* Hamburguer simple */
+/* Hamburguer */
 .iconbar__hamburger {
   width: 28px;
   height: 2px;
@@ -150,16 +162,13 @@
     background: var(--c-black);
   }
 
-  &::before {
-    top: -8px;
-  }
-
-  &::after {
-    top: 8px;
-  }
+  &::before { top: -8px; }
+  &::after  { top:  8px; }
 }
 
-/* NOVAS SECTION */
+/* =========================
+   NOVAS
+========================= */
 .novas {
   background: linear-gradient(180deg, #fff 0%, #f2f2f2 100%);
 }
@@ -168,52 +177,52 @@
   width: 100%;
   max-width: 1920px;
   margin: 0 auto;
+  padding-inline: clamp(16px, 5vw, 244px);
   padding-bottom: 0;
 }
 
 .novas__perks {
-  height: 36px;
-  padding: 150px 0 0;
+  height: auto;
+  padding: clamp(40px, 8vw, 150px) 0 0;
+
   display: flex;
   justify-content: center;
-  gap: 400px;
+  gap: clamp(16px, 8vw, 400px);
+  flex-wrap: wrap;
 }
 
 .novas__perk {
-  width: 220px;
+  width: clamp(180px, 22vw, 220px);
   text-align: center;
+
   font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial;
   font-size: 16px;
   font-weight: 400;
   margin: 0;
   color: #000;
 
-  strong {
-    font-weight: 700;
-  }
+  strong { font-weight: 700; }
 
-  &:nth-child(2) {
-    width: 183px;
-  }
-
-  &:nth-child(3) {
-    width: 192px;
-  }
+  &:nth-child(2) { width: clamp(160px, 18vw, 183px); }
+  &:nth-child(3) { width: clamp(168px, 19vw, 192px); }
 }
 
 .novas__titlebox {
-  height: 332px;
-  padding: 0 244px;
+  height: auto;
+  min-height: clamp(160px, 22vw, 332px);
+
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
+
   gap: 10px;
+  padding-bottom: clamp(10px, 2vw, 24px);
 }
 
 .novas__title {
   font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial;
-  font-size: 64px;
+  font-size: clamp(32px, 5vw, 64px);
   font-weight: 600;
   margin: 0;
   color: #000;
@@ -221,35 +230,43 @@
 
 .novas__subtitle {
   font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial;
-  font-size: 32px;
+  font-size: clamp(18px, 2.6vw, 32px);
   font-weight: 300;
   margin: 0;
   color: #000;
 }
 
-/* GRID */
+/* =========================
+   GRID + CARDS (BASE)
+========================= */
 .grid {
-  height: 1255px;
   display: grid;
-  grid-template-columns: repeat(4, 316px);
-  grid-auto-rows: 480px;
-  gap: 120px;
+  height: auto;
+
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: clamp(16px, 4vw, 120px);
+
   justify-content: center;
-  align-content: center;
+  align-content: start;
+  padding-block: clamp(24px, 4vw, 60px);
 }
 
 .card {
-  width: 316px;
-  height: 480px;
-  padding: 25px;
+  width: 100%;
+  max-width: 316px;
+  margin-inline: auto;
+
   background: #fff;
   border-radius: 20px;
   overflow: hidden;
+
   display: flex;
   flex-direction: column;
   gap: 10px;
 
-  transition: transform 120ms ease, box-shadow 120ms ease;
+  padding: 25px;
+
+  transition: transform 160ms ease, box-shadow 160ms ease;
 }
 
 .card__img {
@@ -261,7 +278,6 @@
 }
 
 .card__info {
-  height: 165px;
   padding: 25px 0;
   display: flex;
   flex-direction: column;
@@ -271,71 +287,143 @@
 }
 
 .card__name {
-  width: 266px;
+  width: 100%;
+  max-width: 266px;
   text-align: center;
+
   font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial;
-  font-size: 32px;
+  font-size: clamp(22px, 3.2vw, 32px);
   font-weight: 500;
   color: #000;
 }
 
 .card__price {
-  width: 206px;
+  width: 100%;
+  max-width: 206px;
   text-align: center;
+
   font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial;
-  font-size: 40px;
+  font-size: clamp(24px, 4vw, 40px);
   font-weight: 700;
   color: #000;
 }
 
-/* Card clickable */
 .cardLink {
   cursor: pointer;
   text-decoration: none;
   color: inherit;
-
   -webkit-tap-highlight-color: transparent;
+}
 
-  &:hover {
+/* =========================
+   ✅ DESKTOP / TABLET / LAPTOP (>= 641px)
+   Siempre 4 columnas
+========================= */
+@media (min-width: 641px) {
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 316px));
+    gap: clamp(18px, 2.2vw, 120px);
+    justify-content: center;
+    align-content: center;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 316px;
+    height: 480px;
+    padding: 25px;
+  }
+
+  .card__img { height: 255px; }
+
+  .card__info {
+    height: 165px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }
+
+  .card__name {
+    width: 266px;
+    max-width: 266px;
+    font-size: 32px;
+  }
+
+  .card__price {
+    width: 206px;
+    max-width: 206px;
+    font-size: 40px;
+  }
+}
+
+/* =========================
+   BANNER FULL SCREEN
+========================= */
+.banner {
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  overflow: hidden;
+  position: relative;
+
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+
+  height: 100vh;
+  height: 100svh;
+}
+
+.banner__img {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* =========================
+   ANIMACIONES
+========================= */
+.iconbar__btn,
+.cardLink,
+.hero__cta {
+  transition: transform 160ms ease, box-shadow 160ms ease, filter 160ms ease;
+  touch-action: manipulation;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .iconbar__btn:hover { transform: translateY(-1px); }
+
+  .cardLink:hover .card {
     box-shadow: var(--sh-soft);
     transform: translateY(-2px);
   }
 
-  &:active {
-    transform: translateY(0px);
+  .hero__cta:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.02);
   }
 }
 
-/* BANNER */
-.banner {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
+@media (prefers-reduced-motion: reduce) {
+  .iconbar__btn,
+  .cardLink,
+  .hero__cta {
+    transition: none !important;
+  }
 }
 
-.banner__img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* RESPONSIVE (sin romper el look) */
+/* =========================
+   BREAKPOINTS GENERALES
+========================= */
 @media (max-width: 1440px) {
-  .hero__wrap {
-    min-height: 900px;
-    padding: 0 80px;
-  }
+  .hero__wrap { padding-inline: clamp(16px, 5vw, 80px); }
 
   .hero__product {
-    width: 520px;
-    height: 520px;
-  }
-
-  .grid {
-    grid-template-columns: repeat(3, 316px);
+    width: clamp(320px, 36vw, 520px);
+    height: clamp(320px, 36vw, 520px);
   }
 }
 
@@ -343,14 +431,13 @@
   .hero__wrap {
     flex-direction: column;
     align-items: flex-start;
-    padding: 60px 32px;
-    gap: 40px;
     min-height: unset;
+
+    padding: clamp(24px, 6vw, 60px) clamp(16px, 5vw, 32px);
+    gap: clamp(20px, 4vw, 40px);
   }
 
-  .hero__cta {
-    margin-top: 40px;
-  }
+  .hero__cta { margin-top: clamp(20px, 5vw, 40px); }
 
   .iconbar {
     top: 20px;
@@ -359,34 +446,143 @@
   }
 
   .novas__perks {
-    gap: 40px;
-    padding-top: 60px;
-    flex-wrap: wrap;
-    height: auto;
-  }
-
-  .grid {
-    height: auto;
-    padding: 40px 0;
-    grid-template-columns: repeat(2, 316px);
-    gap: 40px;
-  }
-
-  .banner {
-    height: 520px;
+    gap: clamp(16px, 6vw, 40px);
+    padding-top: clamp(40px, 8vw, 60px);
   }
 }
 
 @media (max-width: 720px) {
+  .novas__title { font-size: clamp(28px, 7vw, 44px); }
+  .novas__subtitle { font-size: clamp(16px, 4vw, 24px); }
+}
+
+/* ==========================================================
+   ✅ MOBILE (<= 640px)
+   ✅ FIX REAL: iconbar fijo al viewport SI O SI
+========================================================== */
+@media (max-width: 640px) {
+  .hero__wrap {
+    padding-inline: 16px;
+    padding-top: 72px; /* deja espacio para los iconos fijos */
+    min-height: unset;
+    align-items: stretch;
+    gap: 18px;
+  }
+
+  /* ✅ FIX: más especificidad + fixed + inset para anclar al viewport
+     Esto evita que "absolute" o reglas externas ganen.
+     También ayuda cuando existe algún style raro en cascada. */
+  .home .iconbar,
+  .hero .iconbar {
+    position: fixed !important;
+    inset: 14px 14px auto auto; /* top right */
+    z-index: 2147483647; /* ultra alto para que no lo tape nada */
+    gap: 12px;
+    pointer-events: auto;
+  }
+
+  .iconbar__btn {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .hero__right {
+    order: -1;
+    width: 100%;
+    padding: 10px 0 6px;
+  }
+
+  .hero__product {
+    width: clamp(280px, 84vw, 440px);
+    height: clamp(280px, 84vw, 440px);
+  }
+
+  .hero__mask { margin-bottom: 18px; }
+  .hero__title { margin-bottom: 16px; }
+
+  .hero__cta {
+    width: 100%;
+    margin-top: 18px;
+    text-align: center;
+    padding: 16px 28px;
+  }
+
+  .novas__wrap { padding-inline: 16px; }
+
   .grid {
-    grid-template-columns: 316px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    padding-block: 18px;
   }
 
-  .novas__title {
-    font-size: 44px;
+  .card {
+    max-width: none;
+    height: auto;
+    padding: 12px;
+    border-radius: 16px;
+    gap: 8px;
   }
 
-  .novas__subtitle {
-    font-size: 24px;
+  .card__img {
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border-radius: 14px;
   }
+
+  .card__info {
+    height: auto;
+    padding: 8px 0 0;
+    gap: 6px;
+    align-items: flex-start;
+  }
+
+  .card__name {
+    max-width: 100%;
+    font-size: 14px;
+    line-height: 1.2;
+    text-align: left;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card__price {
+    max-width: 100%;
+    font-size: 16px;
+    text-align: left;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero__wrap {
+    padding-inline: 14px;
+    padding-top: 74px;
+  }
+
+  .grid { gap: 10px; }
+  .card { padding: 10px; }
+
+  .card__name { font-size: 13px; }
+  .card__price { font-size: 15px; }
+}
+
+/* =========================
+   Scrollbar negro (solo desktop)
+========================= */
+@media (hover: hover) and (pointer: fine) {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: #000 #f2f2f2;
+  }
+
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: #f2f2f2; }
+  ::-webkit-scrollbar-thumb {
+    background: #000;
+    border-radius: 999px;
+    border: 2px solid #f2f2f2;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: #111; }
 }
