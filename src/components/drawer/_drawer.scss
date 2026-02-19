@@ -1,0 +1,148 @@
+.drawerOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+  z-index: 900;
+
+  &.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 360px;
+  background: #fff;
+  z-index: 901;
+  transform: translateX(110%);
+  transition: transform 200ms ease;
+  box-shadow: -20px 0 60px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.drawer.is-open {
+  transform: translateX(0);
+}
+
+.drawer__head {
+  padding: 18px 18px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.drawer__title {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 18px;
+  color: #000;
+}
+
+.drawer__close {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.10);
+  background: #fff;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.04);
+  }
+}
+
+.drawer__nav {
+  padding: 8px 12px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.drawer__item {
+  height: 46px;
+  border-radius: 12px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  text-decoration: none;
+  color: #000;
+
+  cursor: pointer;
+  border: 1px solid transparent;
+  background: transparent;
+
+  -webkit-tap-highlight-color: transparent;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.06);
+  }
+}
+
+.drawer__item--toggle {
+  background: rgba(0, 0, 0, 0.02);
+
+  &.is-open .drawer__chev {
+    transform: rotate(180deg);
+  }
+}
+
+.drawer__chev {
+  transition: transform 160ms ease;
+}
+
+.drawer__sub {
+  margin-top: -4px;
+  padding-left: 8px;
+  display: grid;
+  gap: 6px;
+
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 180ms ease;
+
+  &.is-open {
+    max-height: 240px;
+  }
+}
+
+.drawer__subitem {
+  height: 42px;
+  border-radius: 12px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+
+  text-decoration: none;
+  color: #000;
+
+  -webkit-tap-highlight-color: transparent;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.04);
+  }
+}
+
+.drawer__sep {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.08);
+  margin: 8px 8px;
+}
+
+@media (max-width: 520px) {
+  .drawer {
+    width: 92vw;
+  }
+}

@@ -1,0 +1,392 @@
+/* HOME BASE */
+.home {
+  width: 100%;
+  min-height: 100vh;
+  background: #fff;
+}
+
+/* HERO */
+.hero {
+  background: #fff;
+}
+
+.hero__wrap {
+  width: 100%;
+  max-width: 1920px;
+  min-height: 1080px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 157px;
+}
+
+.hero__left {
+  width: 520px;
+}
+
+.hero__mask {
+  font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  font-size: 18px;
+  font-weight: 400;
+  color: #000;
+  margin-bottom: 150px;
+}
+
+.hero__title {
+  font-family: "Michroma", system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  font-size: 40px;
+  font-weight: 400;
+  color: #000;
+  margin: 0 0 60px;
+}
+
+.hero__line {
+  font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  font-size: 18px;
+  font-weight: 400;
+  color: #000;
+  margin: 0 0 18px;
+  text-transform: uppercase;
+
+  &--upper {
+    margin-bottom: 18px;
+  }
+}
+
+.hero__cta {
+  margin-top: 250px;
+  border: 0;
+  cursor: pointer;
+  color: #fff;
+  font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  font-size: 20px;
+  font-weight: 700;
+
+  padding: 25px 185px;
+  border-radius: 50px;
+  background: linear-gradient(90deg, #c8c8c8 0%, #000 100%);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Product link (clickable) */
+.hero__productLink {
+  display: inline-flex;
+  border-radius: 999px;
+}
+
+.hero__right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero__product {
+  width: 641px;
+  height: 641px;
+  object-fit: contain;
+  user-select: none;
+}
+
+/* ICON BAR (right side) */
+.iconbar {
+  position: absolute;
+  top: 48px;
+  right: 61px;
+  display: flex;
+  flex-direction: column;
+  gap: 65px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Unificado: antes estaba duplicado */
+.iconbar__btn {
+  width: 39px;
+  height: 39px;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  text-decoration: none;
+
+  -webkit-tap-highlight-color: transparent;
+
+  img {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  &:hover {
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0px);
+  }
+}
+
+/* Hamburguer simple */
+.iconbar__hamburger {
+  width: 28px;
+  height: 2px;
+  background: var(--c-black);
+  position: relative;
+  display: block;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 28px;
+    height: 2px;
+    background: var(--c-black);
+  }
+
+  &::before {
+    top: -8px;
+  }
+
+  &::after {
+    top: 8px;
+  }
+}
+
+/* NOVAS SECTION */
+.novas {
+  background: linear-gradient(180deg, #fff 0%, #f2f2f2 100%);
+}
+
+.novas__wrap {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding-bottom: 0;
+}
+
+.novas__perks {
+  height: 36px;
+  padding: 150px 0 0;
+  display: flex;
+  justify-content: center;
+  gap: 400px;
+}
+
+.novas__perk {
+  width: 220px;
+  text-align: center;
+  font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
+  color: #000;
+
+  strong {
+    font-weight: 700;
+  }
+
+  &:nth-child(2) {
+    width: 183px;
+  }
+
+  &:nth-child(3) {
+    width: 192px;
+  }
+}
+
+.novas__titlebox {
+  height: 332px;
+  padding: 0 244px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+
+.novas__title {
+  font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  font-size: 64px;
+  font-weight: 600;
+  margin: 0;
+  color: #000;
+}
+
+.novas__subtitle {
+  font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  font-size: 32px;
+  font-weight: 300;
+  margin: 0;
+  color: #000;
+}
+
+/* GRID */
+.grid {
+  height: 1255px;
+  display: grid;
+  grid-template-columns: repeat(4, 316px);
+  grid-auto-rows: 480px;
+  gap: 120px;
+  justify-content: center;
+  align-content: center;
+}
+
+.card {
+  width: 316px;
+  height: 480px;
+  padding: 25px;
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.card__img {
+  width: 100%;
+  height: 255px;
+  border-radius: 20px;
+  object-fit: cover;
+  user-select: none;
+}
+
+.card__info {
+  height: 165px;
+  padding: 25px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.card__name {
+  width: 266px;
+  text-align: center;
+  font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  font-size: 32px;
+  font-weight: 500;
+  color: #000;
+}
+
+.card__price {
+  width: 206px;
+  text-align: center;
+  font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  font-size: 40px;
+  font-weight: 700;
+  color: #000;
+}
+
+/* Card clickable */
+.cardLink {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+
+  -webkit-tap-highlight-color: transparent;
+
+  &:hover {
+    box-shadow: var(--sh-soft);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0px);
+  }
+}
+
+/* BANNER */
+.banner {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.banner__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* RESPONSIVE (sin romper el look) */
+@media (max-width: 1440px) {
+  .hero__wrap {
+    min-height: 900px;
+    padding: 0 80px;
+  }
+
+  .hero__product {
+    width: 520px;
+    height: 520px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(3, 316px);
+  }
+}
+
+@media (max-width: 1100px) {
+  .hero__wrap {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 60px 32px;
+    gap: 40px;
+    min-height: unset;
+  }
+
+  .hero__cta {
+    margin-top: 40px;
+  }
+
+  .iconbar {
+    top: 20px;
+    right: 20px;
+    gap: 22px;
+  }
+
+  .novas__perks {
+    gap: 40px;
+    padding-top: 60px;
+    flex-wrap: wrap;
+    height: auto;
+  }
+
+  .grid {
+    height: auto;
+    padding: 40px 0;
+    grid-template-columns: repeat(2, 316px);
+    gap: 40px;
+  }
+
+  .banner {
+    height: 520px;
+  }
+}
+
+@media (max-width: 720px) {
+  .grid {
+    grid-template-columns: 316px;
+  }
+
+  .novas__title {
+    font-size: 44px;
+  }
+
+  .novas__subtitle {
+    font-size: 24px;
+  }
+}
