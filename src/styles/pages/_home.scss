@@ -9,11 +9,62 @@
 }
 
 /* =========================
+   ANIMACIONES - Sistema base
+========================= */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(.98); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ✅ Nuevo: escala SIN opacity (para no “lavar” la imagen) */
+@keyframes scaleOnly {
+  from { transform: scale(.985); }
+  to   { transform: scale(1); }
+}
+
+@keyframes glowSoft {
+  0%, 100% { filter: brightness(1); }
+  50%      { filter: brightness(1.05); }
+}
+
+/* Evita animaciones si el usuario lo pide */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Transiciones generales (micro-interacciones) */
+.iconbar__btn,
+.hero__cta,
+.hero__productLink,
+.card {
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease, opacity 180ms ease;
+  will-change: transform;
+  touch-action: manipulation;
+}
+
+/* =========================
    HERO
 ========================= */
-.hero {
-  background: #fff;
-}
+.hero { background: #fff; }
 
 .hero__wrap {
   width: 100%;
@@ -27,11 +78,16 @@
   min-height: clamp(680px, 70vh, 1080px);
   padding-inline: clamp(16px, 6vw, 157px);
   gap: clamp(24px, 4vw, 60px);
+
+  animation: fadeIn 520ms ease both;
 }
 
 .hero__left {
   width: 100%;
   max-width: 520px;
+
+  animation: fadeUp 600ms ease both;
+  animation-delay: 60ms;
 }
 
 .hero__mask {
@@ -40,6 +96,9 @@
   font-weight: 400;
   color: #000;
   margin-bottom: clamp(32px, 10vw, 150px);
+
+  animation: fadeUp 650ms ease both;
+  animation-delay: 90ms;
 }
 
 .hero__title {
@@ -49,6 +108,9 @@
   color: #000;
   margin: 0 0 clamp(18px, 4vw, 60px);
   line-height: 1.15;
+
+  animation: fadeUp 680ms ease both;
+  animation-delay: 120ms;
 }
 
 .hero__line {
@@ -59,9 +121,10 @@
   margin: 0 0 18px;
   text-transform: uppercase;
 
-  &--upper {
-    margin-bottom: 18px;
-  }
+  animation: fadeUp 700ms ease both;
+  animation-delay: 160ms;
+
+  &--upper { margin-bottom: 18px; }
 }
 
 .hero__cta {
@@ -78,12 +141,41 @@
   border-radius: 50px;
   background: linear-gradient(90deg, #c8c8c8 0%, #000 100%);
   -webkit-tap-highlight-color: transparent;
+
+  animation: fadeUp 760ms ease both;
+  animation-delay: 220ms;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.04);
+    }
+  }
+
+  &:active { transform: translateY(0) scale(0.98); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: fadeUp 760ms ease both, glowSoft 2.4s ease-in-out 900ms infinite;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #000;
+    outline-offset: 4px;
+  }
 }
 
-/* Product link (clickable) */
 .hero__productLink {
   display: inline-flex;
   border-radius: 999px;
+
+  animation: scaleIn 700ms ease both;
+  animation-delay: 160ms;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover { transform: translateY(-2px); }
+  }
+
+  &:active { transform: translateY(0) scale(0.99); }
 }
 
 .hero__right {
@@ -92,9 +184,12 @@
   justify-content: center;
   align-items: center;
   min-width: 0;
+
+  animation: fadeUp 640ms ease both;
+  animation-delay: 120ms;
 }
 
-/* Bota */
+/* Bota (sin animación de flotar) */
 .hero__product {
   width: clamp(260px, 42vw, 641px);
   height: clamp(260px, 42vw, 641px);
@@ -104,6 +199,10 @@
 
   display: block;
   margin-inline: auto;
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: fadeUp 760ms ease both;
+  }
 }
 
 /* =========================
@@ -119,6 +218,9 @@
   gap: clamp(14px, 3.8vw, 65px);
   align-items: center;
   justify-content: center;
+
+  animation: fadeDown 600ms ease both;
+  animation-delay: 200ms;
 }
 
 .iconbar__btn {
@@ -134,13 +236,19 @@
   place-items: center;
   border-radius: 10px;
   text-decoration: none;
-
   -webkit-tap-highlight-color: transparent;
 
-  img {
-    width: 100%;
-    height: 100%;
-    display: block;
+  img { width: 100%; height: 100%; display: block; }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover { transform: translateY(-2px) scale(1.02); }
+  }
+
+  &:active { transform: translateY(0) scale(0.96); }
+
+  &:focus-visible {
+    outline: 2px solid #000;
+    outline-offset: 4px;
   }
 }
 
@@ -189,6 +297,9 @@
   justify-content: center;
   gap: clamp(16px, 8vw, 400px);
   flex-wrap: wrap;
+
+  animation: fadeUp 700ms ease both;
+  animation-delay: 180ms;
 }
 
 .novas__perk {
@@ -205,6 +316,11 @@
 
   &:nth-child(2) { width: clamp(160px, 18vw, 183px); }
   &:nth-child(3) { width: clamp(168px, 19vw, 192px); }
+
+  animation: fadeUp 700ms ease both;
+  &:nth-child(1) { animation-delay: 120ms; }
+  &:nth-child(2) { animation-delay: 180ms; }
+  &:nth-child(3) { animation-delay: 240ms; }
 }
 
 .novas__titlebox {
@@ -218,6 +334,9 @@
 
   gap: 10px;
   padding-bottom: clamp(10px, 2vw, 24px);
+
+  animation: fadeUp 760ms ease both;
+  animation-delay: 200ms;
 }
 
 .novas__title {
@@ -249,8 +368,12 @@
   justify-content: center;
   align-content: start;
   padding-block: clamp(24px, 4vw, 60px);
+
+  animation: fadeIn 680ms ease both;
+  animation-delay: 120ms;
 }
 
+/* Card base */
 .card {
   width: 100%;
   max-width: 316px;
@@ -265,8 +388,53 @@
   gap: 10px;
 
   padding: 25px;
+  box-shadow: none;
+}
 
-  transition: transform 160ms ease, box-shadow 160ms ease;
+/* Cards: entrada solo opacity para no pelear con hover transform */
+.cardLink {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  -webkit-tap-highlight-color: transparent;
+
+  animation: fadeIn 650ms ease both;
+
+  &:nth-child(12n + 1) { animation-delay: 60ms; }
+  &:nth-child(12n + 2) { animation-delay: 100ms; }
+  &:nth-child(12n + 3) { animation-delay: 140ms; }
+  &:nth-child(12n + 4) { animation-delay: 180ms; }
+  &:nth-child(12n + 5) { animation-delay: 220ms; }
+  &:nth-child(12n + 6) { animation-delay: 260ms; }
+  &:nth-child(12n + 7) { animation-delay: 300ms; }
+  &:nth-child(12n + 8) { animation-delay: 340ms; }
+  &:nth-child(12n + 9) { animation-delay: 380ms; }
+  &:nth-child(12n + 10){ animation-delay: 420ms; }
+  &:nth-child(12n + 11){ animation-delay: 460ms; }
+  &:nth-child(12n + 12){ animation-delay: 500ms; }
+
+  transform-origin: center;
+  position: relative;
+  z-index: 0;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.14);
+      z-index: 3;
+    }
+  }
+
+  &:active {
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.12);
+    z-index: 3;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #000;
+    outline-offset: 4px;
+  }
 }
 
 .card__img {
@@ -308,17 +476,7 @@
   color: #000;
 }
 
-.cardLink {
-  cursor: pointer;
-  text-decoration: none;
-  color: inherit;
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* =========================
-   ✅ DESKTOP / TABLET / LAPTOP (>= 641px)
-   Siempre 4 columnas
-========================= */
+/* 4 columnas siempre (no celular) */
 @media (min-width: 641px) {
   .grid {
     grid-template-columns: repeat(4, minmax(0, 316px));
@@ -327,36 +485,15 @@
     align-content: center;
   }
 
-  .card {
-    width: 100%;
-    max-width: 316px;
-    height: 480px;
-    padding: 25px;
-  }
+  .card { height: 480px; }
+  .card__info { height: 165px; }
 
-  .card__img { height: 255px; }
-
-  .card__info {
-    height: 165px;
-    padding-top: 25px;
-    padding-bottom: 25px;
-  }
-
-  .card__name {
-    width: 266px;
-    max-width: 266px;
-    font-size: 32px;
-  }
-
-  .card__price {
-    width: 206px;
-    max-width: 206px;
-    font-size: 40px;
-  }
+  .card__name { font-size: 32px; max-width: 266px; }
+  .card__price { font-size: 40px; max-width: 206px; }
 }
 
 /* =========================
-   BANNER FULL SCREEN
+   BANNER FULL SCREEN (ARREGLADO)
 ========================= */
 .banner {
   margin: 0;
@@ -370,6 +507,10 @@
 
   height: 100vh;
   height: 100svh;
+
+  /* ✅ Importante: el banner SIEMPRE completamente visible (sin opacity ligada al scroll) */
+  opacity: 1;
+  animation: none;
 }
 
 .banner__img {
@@ -381,37 +522,10 @@
   object-fit: cover;
   object-position: center;
   display: block;
-}
 
-/* =========================
-   ANIMACIONES
-========================= */
-.iconbar__btn,
-.cardLink,
-.hero__cta {
-  transition: transform 160ms ease, box-shadow 160ms ease, filter 160ms ease;
-  touch-action: manipulation;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .iconbar__btn:hover { transform: translateY(-1px); }
-
-  .cardLink:hover .card {
-    box-shadow: var(--sh-soft);
-    transform: translateY(-2px);
-  }
-
-  .hero__cta:hover {
-    transform: translateY(-1px);
-    filter: brightness(1.02);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .iconbar__btn,
-  .cardLink,
-  .hero__cta {
-    transition: none !important;
+  /* ✅ si quieres un toque cinematográfico sin “lavar” colores: solo escala */
+  @media (prefers-reduced-motion: no-preference) {
+    animation: scaleOnly 900ms ease both;
   }
 }
 
@@ -456,49 +570,33 @@
   .novas__subtitle { font-size: clamp(16px, 4vw, 24px); }
 }
 
-/* ==========================================================
-   ✅ MOBILE (<= 640px)
-   ✅ FIX REAL: iconbar fijo al viewport SI O SI
-========================================================== */
+/* MOBILE <= 640px */
 @media (max-width: 640px) {
   .hero__wrap {
     padding-inline: 16px;
-    padding-top: 72px; /* deja espacio para los iconos fijos */
+    padding-top: 72px;
     min-height: unset;
     align-items: stretch;
     gap: 18px;
   }
 
-  /* ✅ FIX: más especificidad + fixed + inset para anclar al viewport
-     Esto evita que "absolute" o reglas externas ganen.
-     También ayuda cuando existe algún style raro en cascada. */
   .home .iconbar,
   .hero .iconbar {
     position: fixed !important;
-    inset: 14px 14px auto auto; /* top right */
-    z-index: 2147483647; /* ultra alto para que no lo tape nada */
+    inset: 14px 14px auto auto;
+    z-index: 2147483647;
     gap: 12px;
     pointer-events: auto;
   }
 
-  .iconbar__btn {
-    min-width: 44px;
-    min-height: 44px;
-  }
+  .iconbar__btn { min-width: 44px; min-height: 44px; }
 
-  .hero__right {
-    order: -1;
-    width: 100%;
-    padding: 10px 0 6px;
-  }
+  .hero__right { order: -1; width: 100%; padding: 10px 0 6px; }
 
   .hero__product {
     width: clamp(280px, 84vw, 440px);
     height: clamp(280px, 84vw, 440px);
   }
-
-  .hero__mask { margin-bottom: 18px; }
-  .hero__title { margin-bottom: 16px; }
 
   .hero__cta {
     width: 100%;
@@ -537,11 +635,9 @@
   }
 
   .card__name {
-    max-width: 100%;
     font-size: 14px;
     line-height: 1.2;
     text-align: left;
-
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -549,23 +645,9 @@
   }
 
   .card__price {
-    max-width: 100%;
     font-size: 16px;
     text-align: left;
   }
-}
-
-@media (max-width: 360px) {
-  .hero__wrap {
-    padding-inline: 14px;
-    padding-top: 74px;
-  }
-
-  .grid { gap: 10px; }
-  .card { padding: 10px; }
-
-  .card__name { font-size: 13px; }
-  .card__price { font-size: 15px; }
 }
 
 /* =========================
@@ -585,4 +667,29 @@
     border: 2px solid #f2f2f2;
   }
   ::-webkit-scrollbar-thumb:hover { background: #111; }
+}
+
+/* =========================
+   BONUS: Scroll-reveal nativo (si se soporta)
+   ✅ IMPORTANTE: SACAMOS .banner de este bloque para que no se “blanquee”
+========================= */
+@supports (animation-timeline: view()) {
+  .novas__perks,
+  .novas__titlebox,
+  .grid,
+  .cardLink {
+    animation-timeline: view();
+    animation-range: entry 10% cover 30%;
+  }
+
+  .novas__perks { animation-name: fadeUp; animation-duration: 700ms; }
+  .novas__titlebox { animation-name: fadeUp; animation-duration: 760ms; }
+  .grid { animation-name: fadeIn; animation-duration: 650ms; }
+
+  /* Cards siguen solo con opacity (para no romper hover transform) */
+  .cardLink {
+    animation-name: fadeIn;
+    animation-duration: 650ms;
+    animation-delay: 0ms;
+  }
 }
