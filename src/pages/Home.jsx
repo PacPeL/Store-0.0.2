@@ -166,10 +166,10 @@ export default function Home() {
               <strong>FRETE GRÁTIS</strong> para compras acima de <strong>R$ 200!</strong>
             </p>
             <p className="novas__perk">
-              <strong>Envio rápido</strong> para todo o <strong>Brasil!</strong>
+              <strong>Envio rápido</strong> para todo o <strong>Brasil! </strong>
             </p>
             <p className="novas__perk">
-              <strong>20% OFF</strong> na sua primeira <strong>compra!</strong>
+              <strong>20% OFF</strong> na sua primeira <strong>compra! </strong>
             </p>
           </div>
 
