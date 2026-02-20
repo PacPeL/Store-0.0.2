@@ -10,55 +10,16 @@
 
 /* =========================
    ANIMACIONES - Sistema base
+   (ELIMINADAS)
 ========================= */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
+/* Se removieron todos los @keyframes y usos de animation */
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(14px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeDown {
-  from { opacity: 0; transform: translateY(-12px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes scaleIn {
-  from { opacity: 0; transform: scale(.98); }
-  to   { opacity: 1; transform: scale(1); }
-}
-
-/* ✅ Nuevo: escala SIN opacity (para no “lavar” la imagen) */
-@keyframes scaleOnly {
-  from { transform: scale(.985); }
-  to   { transform: scale(1); }
-}
-
-@keyframes glowSoft {
-  0%, 100% { filter: brightness(1); }
-  50%      { filter: brightness(1.05); }
-}
-
-/* Evita animaciones si el usuario lo pide */
+/* Evita animaciones si el usuario lo pide (mantengo por seguridad, no hay animaciones de todos modos) */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation: none !important;
-    transition: none !important;
     scroll-behavior: auto !important;
   }
-}
-
-/* Transiciones generales (micro-interacciones) */
-.iconbar__btn,
-.hero__cta,
-.hero__productLink,
-.card {
-  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease, opacity 180ms ease;
-  will-change: transform;
-  touch-action: manipulation;
 }
 
 /* =========================
@@ -78,16 +39,11 @@
   min-height: clamp(680px, 70vh, 1080px);
   padding-inline: clamp(16px, 6vw, 157px);
   gap: clamp(24px, 4vw, 60px);
-
-  animation: fadeIn 520ms ease both;
 }
 
 .hero__left {
   width: 100%;
   max-width: 520px;
-
-  animation: fadeUp 600ms ease both;
-  animation-delay: 60ms;
 }
 
 .hero__mask {
@@ -96,9 +52,6 @@
   font-weight: 400;
   color: #000;
   margin-bottom: clamp(32px, 10vw, 150px);
-
-  animation: fadeUp 650ms ease both;
-  animation-delay: 90ms;
 }
 
 .hero__title {
@@ -108,9 +61,6 @@
   color: #000;
   margin: 0 0 clamp(18px, 4vw, 60px);
   line-height: 1.15;
-
-  animation: fadeUp 680ms ease both;
-  animation-delay: 120ms;
 }
 
 .hero__line {
@@ -120,9 +70,6 @@
   color: #000;
   margin: 0 0 18px;
   text-transform: uppercase;
-
-  animation: fadeUp 700ms ease both;
-  animation-delay: 160ms;
 
   &--upper { margin-bottom: 18px; }
 }
@@ -141,41 +88,11 @@
   border-radius: 50px;
   background: linear-gradient(90deg, #c8c8c8 0%, #000 100%);
   -webkit-tap-highlight-color: transparent;
-
-  animation: fadeUp 760ms ease both;
-  animation-delay: 220ms;
-
-  @media (hover: hover) and (pointer: fine) {
-    &:hover {
-      transform: translateY(-2px);
-      filter: brightness(1.04);
-    }
-  }
-
-  &:active { transform: translateY(0) scale(0.98); }
-
-  @media (prefers-reduced-motion: no-preference) {
-    animation: fadeUp 760ms ease both, glowSoft 2.4s ease-in-out 900ms infinite;
-  }
-
-  &:focus-visible {
-    outline: 2px solid #000;
-    outline-offset: 4px;
-  }
 }
 
 .hero__productLink {
   display: inline-flex;
   border-radius: 999px;
-
-  animation: scaleIn 700ms ease both;
-  animation-delay: 160ms;
-
-  @media (hover: hover) and (pointer: fine) {
-    &:hover { transform: translateY(-2px); }
-  }
-
-  &:active { transform: translateY(0) scale(0.99); }
 }
 
 .hero__right {
@@ -184,12 +101,9 @@
   justify-content: center;
   align-items: center;
   min-width: 0;
-
-  animation: fadeUp 640ms ease both;
-  animation-delay: 120ms;
 }
 
-/* Bota (sin animación de flotar) */
+/* Bota */
 .hero__product {
   width: clamp(260px, 42vw, 641px);
   height: clamp(260px, 42vw, 641px);
@@ -199,10 +113,6 @@
 
   display: block;
   margin-inline: auto;
-
-  @media (prefers-reduced-motion: no-preference) {
-    animation: fadeUp 760ms ease both;
-  }
 }
 
 /* =========================
@@ -219,8 +129,6 @@
   align-items: center;
   justify-content: center;
 
-  animation: fadeDown 600ms ease both;
-  animation-delay: 200ms;
   z-index: 3;
 }
 
@@ -241,16 +149,12 @@
 
   img { width: 100%; height: 100%; display: block; }
 
-  @media (hover: hover) and (pointer: fine) {
-    &:hover { transform: translateY(-2px) scale(1.02); }
-  }
+  /* Se eliminaron :hover y :active para no tener animación ni transformación */
+}
 
-  &:active { transform: translateY(0) scale(0.96); }
-
-  &:focus-visible {
-    outline: 2px solid #000;
-    outline-offset: 4px;
-  }
+.iconbar__btn:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 4px;
 }
 
 /* Hamburguer */
@@ -260,20 +164,20 @@
   background: var(--c-black);
   position: relative;
   display: block;
-
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    width: 28px;
-    height: 2px;
-    background: var(--c-black);
-  }
-
-  &::before { top: -8px; }
-  &::after  { top:  8px; }
 }
+
+.iconbar__hamburger::before,
+.iconbar__hamburger::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 28px;
+  height: 2px;
+  background: var(--c-black);
+}
+
+.iconbar__hamburger::before { top: -8px; }
+.iconbar__hamburger::after  { top:  8px; }
 
 /* =========================
    NOVAS
@@ -298,9 +202,6 @@
   justify-content: center;
   gap: clamp(16px, 8vw, 400px);
   flex-wrap: wrap;
-
-  animation: fadeUp 700ms ease both;
-  animation-delay: 180ms;
 }
 
 .novas__perk {
@@ -314,14 +215,6 @@
   color: #000;
 
   strong { font-weight: 700; }
-
-  &:nth-child(2) { width: clamp(160px, 18vw, 183px); }
-  &:nth-child(3) { width: clamp(168px, 19vw, 192px); }
-
-  animation: fadeUp 700ms ease both;
-  &:nth-child(1) { animation-delay: 120ms; }
-  &:nth-child(2) { animation-delay: 180ms; }
-  &:nth-child(3) { animation-delay: 240ms; }
 }
 
 .novas__titlebox {
@@ -335,9 +228,6 @@
 
   gap: 10px;
   padding-bottom: clamp(10px, 2vw, 24px);
-
-  animation: fadeUp 760ms ease both;
-  animation-delay: 200ms;
 }
 
 .novas__title {
@@ -369,9 +259,6 @@
   justify-content: center;
   align-content: start;
   padding-block: clamp(24px, 4vw, 60px);
-
-  animation: fadeIn 680ms ease both;
-  animation-delay: 120ms;
 }
 
 /* Card base */
@@ -390,52 +277,26 @@
 
   padding: 25px;
   box-shadow: none;
+
+  /* Se elimina transición/hover/active */
 }
 
-/* Cards: entrada solo opacity para no pelear con hover transform */
 .cardLink {
   cursor: pointer;
   text-decoration: none;
   color: inherit;
   -webkit-tap-highlight-color: transparent;
 
-  animation: fadeIn 650ms ease both;
-
-  &:nth-child(12n + 1) { animation-delay: 60ms; }
-  &:nth-child(12n + 2) { animation-delay: 100ms; }
-  &:nth-child(12n + 3) { animation-delay: 140ms; }
-  &:nth-child(12n + 4) { animation-delay: 180ms; }
-  &:nth-child(12n + 5) { animation-delay: 220ms; }
-  &:nth-child(12n + 6) { animation-delay: 260ms; }
-  &:nth-child(12n + 7) { animation-delay: 300ms; }
-  &:nth-child(12n + 8) { animation-delay: 340ms; }
-  &:nth-child(12n + 9) { animation-delay: 380ms; }
-  &:nth-child(12n + 10){ animation-delay: 420ms; }
-  &:nth-child(12n + 11){ animation-delay: 460ms; }
-  &:nth-child(12n + 12){ animation-delay: 500ms; }
-
   transform-origin: center;
   position: relative;
   z-index: 0;
 
-  @media (hover: hover) and (pointer: fine) {
-    &:hover {
-      transform: translateY(-6px) scale(1.03);
-      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.14);
-      z-index: 3;
-    }
-  }
+  /* Sin :hover ni :active */
+}
 
-  &:active {
-    transform: translateY(-2px) scale(1.01);
-    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.12);
-    z-index: 3;
-  }
-
-  &:focus-visible {
-    outline: 2px solid #000;
-    outline-offset: 4px;
-  }
+.cardLink:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 4px;
 }
 
 .card__img {
@@ -509,9 +370,7 @@
   height: 100vh;
   height: 100svh;
 
-  /* ✅ Importante: el banner SIEMPRE completamente visible (sin opacity ligada al scroll) */
   opacity: 1;
-  animation: none;
 }
 
 .banner__img {
@@ -523,11 +382,6 @@
   object-fit: cover;
   object-position: center;
   display: block;
-
-  /* ✅ si quieres un toque cinematográfico sin “lavar” colores: solo escala */
-  @media (prefers-reduced-motion: no-preference) {
-    animation: scaleOnly 900ms ease both;
-  }
 }
 
 /* =========================
@@ -668,29 +522,4 @@
     border: 2px solid #f2f2f2;
   }
   ::-webkit-scrollbar-thumb:hover { background: #111; }
-}
-
-/* =========================
-   BONUS: Scroll-reveal nativo (si se soporta)
-   ✅ IMPORTANTE: SACAMOS .banner de este bloque para que no se “blanquee”
-========================= */
-@supports (animation-timeline: view()) {
-  .novas__perks,
-  .novas__titlebox,
-  .grid,
-  .cardLink {
-    animation-timeline: view();
-    animation-range: entry 10% cover 30%;
-  }
-
-  .novas__perks { animation-name: fadeUp; animation-duration: 700ms; }
-  .novas__titlebox { animation-name: fadeUp; animation-duration: 760ms; }
-  .grid { animation-name: fadeIn; animation-duration: 650ms; }
-
-  /* Cards siguen solo con opacity (para no romper hover transform) */
-  .cardLink {
-    animation-name: fadeIn;
-    animation-duration: 650ms;
-    animation-delay: 0ms;
-  }
 }
