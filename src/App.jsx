@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
+import ProductTemplate from "./pages/ProductTemplate";
 
 const Placeholder = ({ title }) => (
   <div style={{ padding: 40 }}>
@@ -15,7 +16,7 @@ export default function App() {
       <Route path="/profile" element={<Placeholder title="Profile" />} />
       <Route path="/search" element={<Placeholder title="Search" />} />
       <Route path="/menu" element={<Placeholder title="Menu" />} />
-      <Route path="/product/:id" element={<Placeholder title="Product details" />} />
+      <Route path="/product/:id" element={<ProductTemplate />} /> {/* ⬅️ aquí */}
       <Route path="/wishlist" element={<Placeholder title="Wishlist" />} />
       <Route path="/orders" element={<Placeholder title="Orders" />} />
       <Route path="/support" element={<Placeholder title="Support" />} />

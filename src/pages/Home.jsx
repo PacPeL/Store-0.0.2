@@ -107,9 +107,11 @@ export default function Home() {
             <div className="hero__line hero__line--upper">****************</div>
             <div className="hero__line">****************</div>
 
+            <Link to="/product/1">
             <button className="hero__cta" type="button" onClick={handleScrollToNews}>
-              COMPRAR
+              Ler mais
             </button>
+            </Link>
           </div>
 
           <div className="hero__right">

@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "title": "GMA D’or",
+    "price": 1609,
+    "description": "Domine a quadra com a GMA D’or – performance e estilo em uma edição especial.",
+    "category": "Chuteira Campo",
+    "image": "/images/golden_boots.png"
+  },
+  {
+    "id": 2,
+    "title": "Chuteira Campo",
+    "price": 709.99,
+    "description": "Conforto, leveza e tração para todos os jogos.",
+    "category": "Chuteira Campo",
+    "image": "/images/boots.png"
+  }
+]
