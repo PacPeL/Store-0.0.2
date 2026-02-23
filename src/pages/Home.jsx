@@ -9,7 +9,6 @@ export default function Home() {
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isCatalogOpen, setIsCatalogOpen] = useState(false);
-
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [q, setQ] = useState("");
 
@@ -49,14 +48,12 @@ export default function Home() {
     el?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  // Focus input when search opens
   useEffect(() => {
     if (isSearchOpen) {
       setTimeout(() => searchInputRef.current?.focus(), 0);
     }
   }, [isSearchOpen]);
 
-  // ESC closes overlays
   useEffect(() => {
     const onKeyDown = (e) => {
       if (e.key === "Escape") {
@@ -78,7 +75,6 @@ export default function Home() {
 
   return (
     <main className="home">
-      {/* HEADER SEARCH (component) */}
       <HeaderSearch
         isOpen={isSearchOpen}
         value={q}
@@ -88,7 +84,6 @@ export default function Home() {
         inputRef={searchInputRef}
       />
 
-      {/* DRAWER (component) */}
       <Drawer
         isOpen={isDrawerOpen}
         onClose={closeDrawer}
@@ -96,21 +91,25 @@ export default function Home() {
         onToggleCatalog={toggleCatalog}
       />
 
-      {/* HERO */}
-      <section className="hero">
+      <section className="hero" aria-label="Hero">
         <div className="hero__wrap">
           <div className="hero__left">
-            <div className="hero__mask">****************</div>
+            <div className="hero__mask">po</div>
 
             <h1 className="hero__title">GMA D’or</h1>
 
             <div className="hero__line hero__line--upper">****************</div>
             <div className="hero__line">****************</div>
 
-            <Link to="/product/1">
-            <button className="hero__cta" type="button" onClick={handleScrollToNews}>
-              Ler mais
-            </button>
+            <Link to="/product/1" className="hero__productLink" aria-label="Ver produto destaque">
+              <button
+                className="hero__cta"
+                type="button"
+                onClick={handleScrollToNews}
+                aria-label="Ler mais"
+              >
+                Ler mais
+              </button>
             </Link>
           </div>
 
@@ -125,9 +124,7 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* ICON BAR */}
           <aside className="iconbar" aria-label="Quick actions">
-            {/* Drawer button */}
             <button
               className="iconbar__btn"
               type="button"
@@ -146,7 +143,6 @@ export default function Home() {
               <img src="/icons/icon_cart.svg" alt="" />
             </Link>
 
-            {/* Search toggle */}
             <button
               className="iconbar__btn"
               type="button"
@@ -160,18 +156,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* NOVAS */}
-      <section className="novas" id="novidades">
+      <section className="novas" id="novidades" aria-label="Novidades">
         <div className="novas__wrap">
           <div className="novas__perks">
             <p className="novas__perk">
               <strong>FRETE GRÁTIS</strong> para compras acima de <strong>R$ 200!</strong>
             </p>
             <p className="novas__perk">
-              <strong>Envio rápido</strong> para todo o <strong>Brasil! </strong>
+              <strong>Envio rápido</strong> para todo o <strong>Brasil!</strong>
             </p>
             <p className="novas__perk">
-              <strong>20% OFF</strong> na sua primeira <strong>compra! </strong>
+              <strong>20% OFF</strong> na sua primeira <strong>compra!</strong>
             </p>
           </div>
 
@@ -180,13 +175,14 @@ export default function Home() {
             <p className="novas__subtitle">Confira já!</p>
           </div>
 
-          <div className="grid">
+          <div className="grid" role="list">
             {products.map((p) => (
               <Link
                 key={p.id}
                 to={`/product/${p.id}`}
                 className="card cardLink"
                 aria-label={`Ver ${p.name}`}
+                role="listitem"
               >
                 <img className="card__img" src={p.image} alt={p.name} draggable="false" />
                 <div className="card__info">
@@ -197,7 +193,7 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="banner">
+          <div className="banner" aria-hidden="true">
             <img
               className="banner__img"
               src="/images/background_stadium.png"

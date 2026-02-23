@@ -22,8 +22,6 @@ function formatBRL(v) {
 
 /* ==========
    ICONOS DE ESTRELLA (SVG)
-   - StarIcon: dibuja una estrella (filled=true la pinta, filled=false contorno)
-   - Stars: rinde 'count' estrellas con 'filled' llenas y el texto "Sem avaliações"
 ========== */
 function StarIcon({ filled = true, size = 23, title = "Estrela" }) {
   const h = Math.round(size * (24 / 23));
@@ -70,7 +68,7 @@ export default function ProductTemplate() {
   const navigate = useNavigate();
 
   const [loading, setLoading]   = useState(true);
-  const [product, setProduct]   = useState(null); // {id,title,price,description,category,image}
+  const [product, setProduct]   = useState(null);
   const [error, setError]       = useState(null);
 
   useEffect(() => {
@@ -118,23 +116,33 @@ export default function ProductTemplate() {
     const pix = base * (1 - PIX_DISCOUNT);
     const perInstallment = INSTALLMENTS > 0 ? base / INSTALLMENTS : base;
 
+    const pixText = formatBRL(pix);
+    const pixNoCurrency = pixText.replace("R$", "").trim();
+
     return {
       originalText: formatBRL(original),
-      pixValueNoCurrency: formatBRL(pix).replace("R$", "").trim(),
+      pixValueNoCurrency: pixNoCurrency,
+      installments: {
+        n: INSTALLMENTS,
+        per: formatBRL(perInstallment).replace("R$", "").trim(),
+      },
       installmentsText: INSTALLMENTS > 0
         ? `${INSTALLMENTS}x de ${formatBRL(perInstallment)} sem juros`
         : formatBRL(base),
     };
   }, [product]);
 
-  // Handlers de iconbar (en Home abre Drawer y Search overlay; aquí navegamos)
   const openDrawer = () => navigate("/menu");
   const goSearch   = () => navigate("/search");
+
+  const handleBuy = () => {
+    alert(`Adicionar "${product?.title}" ao carrinho`);
+  };
 
   if (loading) {
     return (
       <main className="productPage">
-        <section className="productPage__canvas">
+        <section className="productPage__wrap">
           <div className="productPage__loading">Carregando…</div>
         </section>
         <section className="pp__green" aria-hidden="true" />
@@ -146,13 +154,13 @@ export default function ProductTemplate() {
   if (error || !product) {
     return (
       <main className="productPage">
-        <section className="productPage__canvas">
+        <section className="productPage__wrap">
           <div className="productPage__notfound">
             <h1>Produto não encontrado</h1>
             <p>O item que você procura não existe ou foi removido.</p>
-            <div className="row" style={{ display: "flex", gap: 10, justifyContent: "center" }}>
-              <button className="btn" type="button" onClick={() => navigate(-1)}>Voltar</button>
-              <Link className="btn ghost" to="/">Início</Link>
+            <div className="pp__nfRow">
+              <button className="pp__btn" type="button" onClick={() => navigate(-1)}>Voltar</button>
+              <Link className="pp__btn ghost" to="/">Início</Link>
             </div>
           </div>
         </section>
@@ -164,103 +172,91 @@ export default function ProductTemplate() {
 
   return (
     <main className="productPage">
-      {/* ===== Canvas Figma 1920×1080 (posiciones absolutas) ===== */}
-      <section className="productPage__canvas">
-        {/* ICON BAR — MISMA QUE EN HOME */}
+      <section className="productPage__wrap">
+        {/* ICON BAR */}
         <aside className="iconbar" aria-label="Quick actions">
-          {/* Drawer/Menu */}
-          <button
-            className="iconbar__btn"
-            type="button"
-            onClick={openDrawer}
-            aria-label="Abrir menu"
-          >
+          <button className="iconbar__btn" type="button" onClick={openDrawer} aria-label="Abrir menu">
             <span className="iconbar__hamburger" aria-hidden="true" />
           </button>
 
-          {/* Perfil */}
           <Link className="iconbar__btn" to="/profile" aria-label="Profile">
             <img src="/icons/icon_profile.svg" alt="" />
           </Link>
 
-          {/* Carrito */}
           <Link className="iconbar__btn" to="/cart" aria-label="Cart">
             <img src="/icons/icon_cart.svg" alt="" />
           </Link>
 
-          {/* Buscar */}
-          <button
-            className="iconbar__btn"
-            type="button"
-            onClick={goSearch}
-            aria-label="Buscar"
-          >
+          <button className="iconbar__btn" type="button" onClick={goSearch} aria-label="Buscar">
             <img src="/icons/icon_search.svg" alt="" />
           </button>
         </aside>
 
-        {/* Eyebrow superior */}
-        <div className="pp__maskTop">****************</div>
+        {/* Layout “Figma-like” pero fluido */}
+        <div className="pp__top">
+          {/* Left */}
+          <div className="pp__left">
+            <div className="pp__maskTop">****************</div>
 
-        {/* Título (title + category en segunda línea) */}
-        <h1 className="pp__title">
-          {product.title}
-          {product.category ? <><br />{product.category}</> : null}
-        </h1>
+            <h1 className="pp__title">
+              {product.title}
+              {product.category ? <><br />{product.category}</> : null}
+            </h1>
 
-        {/* Imagen principal (641×641) */}
-        <div className="pp__imageBox">
-          <img className="pp__image" src={product.image} alt={product.title} draggable="false" />
-        </div>
+            <div className="pp__meta">
+              <div className="pp__line1">{product.category || "Sem categoria"}</div>
+              <Stars count={5} filled={5} />
 
-        {/* Meta + Precios */}
-        <div className="pp__meta">
-          <div className="pp__line1">{product.category || "Sem categoria"}</div>
+              <div className="pp__priceBlock">
+                <div className="pp__priceRow1">
+                  <span className="pp__de">de </span>
+                  <s className="pp__original">{derived?.originalText}</s>
+                  <span className="pp__space"> </span>
+                  <span className="pp__porApenas">por apenas</span>
+                </div>
 
-          {/* ⭐ Estrellas (SVG) */}
-          <Stars count={5} filled={5} />
+                <div className="pp__priceRow2">
+                  <span className="pp__rs">R$</span>
+                  <span className="pp__space"> </span>
+                  <span className="pp__pix">{derived?.pixValueNoCurrency}</span>
+                  <span className="pp__space"> </span>
+                  <span className="pp__no">no </span>
+                  <span className="pp__pixWord">PIX</span>
+                </div>
 
-          <div className="pp__priceBlock">
-            <div className="pp__priceRow1">
-              de <s className="pp__original">{derived?.originalText}</s> por apenas
+                <div className="pp__priceRow3">
+                  <span className="w400">ou</span>
+                  <span className="w500"> </span>
+                  <span className="w600">{derived?.installments?.n ?? INSTALLMENTS}x </span>
+                  <span className="w400">de</span>
+                  <span className="w500"> </span>
+                  <span className="w600">{derived?.installments?.per ?? ""} </span>
+                  <span className="w400">sem juros</span>
+                </div>
+              </div>
+
+              <div className="pp__ctaRow">
+                <button className="pp__buy" type="button" onClick={handleBuy}>
+                  Comprar
+                </button>
+
+                <Link className="pp__cart" to="/cart" aria-label="Ir ao carrinho" title="Ir ao carrinho">
+                  <img src="/icons/icon_cart.svg" alt="" />
+                </Link>
+              </div>
             </div>
+          </div>
 
-            <div className="pp__priceRow2">
-              <span className="pp__rs">R$</span>
-              <span>&nbsp;</span>
-              <span className="pp__pix">{derived?.pixValueNoCurrency}</span>
-              <span>&nbsp;</span>
-              <span className="pp__pixTag">no PIX</span>
-            </div>
-
-            <div className="pp__priceRow3">
-              ou <span className="pp__installments">{derived?.installmentsText}</span>
+          {/* Right */}
+          <div className="pp__right">
+            <div className="pp__imageBox">
+              <img className="pp__image" src={product.image} alt={product.title} draggable="false" />
             </div>
           </div>
         </div>
-
-        {/* CTA Comprar + Carrito (estrecho al costado, como Figma) */}
-        <div className="pp__ctaRow">
-          <button
-            className="pp__buy"
-            type="button"
-            onClick={() => alert(`Adicionar "${product.title}" ao carrinho`)}
-          >
-            Comprar
-          </button>
-
-          <Link
-            className="pp__cart"
-            to="/cart"
-            aria-label="Ir ao carrinho"
-            title="Ir ao carrinho"
-          >
-            <img src="/icons/icon_cart.svg" alt="" />
-          </Link>
-        </div>
       </section>
 
-      {/* Secciones inferiores (placeholder + footer + descripción) */}
+      {/* Secciones inferiores */}
       <section className="pp__green" aria-hidden="true" />
       <div className="pp__footerBar" aria-hidden="true" />
 
